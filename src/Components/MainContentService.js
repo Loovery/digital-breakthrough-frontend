@@ -37,11 +37,11 @@ class First extends React.Component {
                         </Paper>
                     </Grid>
                     {/* Recent Orders */}
-                    <Grid item xs={12}>
+                    {/* <Grid item xs={12}>
                         <Paper className={this.props.classes.paper}>
                         <Orders {...this.props}/>
                         </Paper>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Container>
         )
