@@ -159,16 +159,6 @@ class Menu extends React.Component {
             <>
             <AppBar position="absolute" className={clsx(this.props.classes.appBar, this.state.open && this.props.classes.appBarShift)}>
                 <Toolbar className={this.props.classes.toolbar}>
-                {/* <IconButton
-                    edge="start"
-                    color="inherit"
-                    aria-label="open drawer"
-                    onClick={this.handleDrawerClick}
-                    className={clsx(this.props.classes.menuButton, this.state.open && this.props.classes.menuButtonHidden)}
-                    style={{zIndex: 9999}}
-                >
-                    <MenuIcon />
-                </IconButton> */}
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={this.props.classes.title}>
                     Dashboard
                 </Typography>
