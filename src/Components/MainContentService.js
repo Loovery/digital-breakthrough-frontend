@@ -33,7 +33,7 @@ class First extends React.Component {
                     {/* Recent Deposits */}
                     <Grid item xs={12} md={4} lg={3}>
                         <Paper className={this.props.fixedHeightPaper}>
-                        <Deposits />
+                        <Deposits {...this.props}/>
                         </Paper>
                     </Grid>
                     {/* Recent Orders */}
@@ -108,24 +108,40 @@ class Map extends Component {
         <Paper className={this.props.classes.paper} style={{display: 'flex', justifyContent: 'center', alignItems: 'center',position:'absolute', minWidth: '150px'}}>
             <div>{this.state.title}</div>
             <div>
-                <div>Количество центров: {this.state.perCentersCount}</div>
-                <div>Открытых: {this.state.perCentersOpen && this.state.perCentersOpen.length}</div>
-                    {   this.state.perCentersOpen &&
-                        this.state.perCentersOpen.map((item, index)=>(
-                            <div style={{backgroundColor: '#3f51b580',  width: '100%', height: '100%', border: item.name.length ? '1px solid #3f51b5' : 0, borderRadius: '4px', margin: '2px'}}>
-                            {item.name}
-                            </div>
-                        ))
-                    } 
-                
-                <div>Закрытых: {this.state.perCentersClose && this.state.perCentersClose.length}</div>
-                    {   this.state.perCentersClose &&
-                        this.state.perCentersClose.map((item, index)=>(
-                            <div style={{backgroundColor: '#FF050580',  width: '100%', height: '100%', border: item.name.length ? '1px solid #FF0505' : 0, borderRadius: '4px', margin: '2px'}}>                            
-                            {item.name}
-                            </div>
-                        ))
-                    } 
+                {
+                    this.state.perCentersCount && 
+                    <div>Количество центров: {this.state.perCentersCount}</div>
+                }
+                {
+                    this.state.perCentersOpen &&
+                    <>
+                    <div>Открытых: {this.state.perCentersOpen && this.state.perCentersOpen.length}</div>
+                    <div>
+                        {   this.state.perCentersOpen &&
+                            this.state.perCentersOpen.map((item, index)=>(
+                                <div style={{backgroundColor: '#3f51b580',  width: '100%', height: '100%', border: item.name.length ? '1px solid #3f51b5' : 0, borderRadius: '4px', margin: '2px'}}>
+                                {item.name}
+                                </div>
+                            ))
+                        } 
+                    </div>
+                    </>
+                }
+                {
+                    this.state.perCentersClose  && 
+                    <>
+                    <div>Закрытых: {this.state.perCentersClose && this.state.perCentersClose.length}</div>
+                    <div>
+                        {   this.state.perCentersClose &&
+                            this.state.perCentersClose.map((item, index)=>(
+                                <div style={{backgroundColor: '#FF050580',  width: '100%', height: '100%', border: item.name.length ? '1px solid #FF0505' : 0, borderRadius: '4px', margin: '2px'}}>                            
+                                {item.name}
+                                </div>
+                            ))
+                        } 
+                    </div>
+                    </>
+                }
             </div>
         </Paper>
         <svg width={ '100%' } height={ '100%' } viewBox="0 0 800 450">

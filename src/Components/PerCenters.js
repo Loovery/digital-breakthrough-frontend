@@ -40,6 +40,12 @@ export default class PerCenters extends React.Component {
   }
   componentDidMount(){
     this.getCentersList()
+    
+  }
+  componentDidUpdate(prevProps){
+      if (prevProps && prevProps.clickedPerCentersArr !== this.props.clickedPerCentersArr) {
+        this.setState({clickedPerCentersArr: this.props.clickedPerCentersArr})
+      }
   }
   render(){
 
@@ -58,20 +64,20 @@ export default class PerCenters extends React.Component {
           </TableHead>
           <TableBody>
             {
-                (this.props.clickedPerCentersArr || this.state.perCentersArr).map((row, index) => (
-              <TableRow key={index} style={{backgroundColor: row.status ? '#FF050580' : '#3f51b580', border: row.name.length && row. status ? '1px solid #FF0505' : '1px solid #3f51b5',}} >
-                <TableCell>{row.region || ''}</TableCell>
-                <TableCell>{row.name || ''}</TableCell>
-                <TableCell>{row.address || ''}</TableCell>
-                <TableCell>{row.dateOpen || ''}</TableCell>
-                <TableCell>{row.dateClose || ''}</TableCell>
+                (this.state.clickedPerCentersArr || this.state.perCentersArr).map((row, index) => (
+              <TableRow key={index} style={{backgroundColor: row.status ? 'rgba(255, 5, 5, 0.25)' : 'rgba(63, 81, 181, 0.25)', border: row.name.length && row. status ? '1px solid #FF0505' : '1px solid #3f51b5',}} >
+                <TableCell>{row.region || '-'}</TableCell>
+                <TableCell>{row.name || '-'}</TableCell>
+                <TableCell>{row.address || '-'}</TableCell>
+                <TableCell>{row.dateOpen || '-'}</TableCell>
+                <TableCell>{row.dateClose || '-'}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
-        <div className={this.props.classes.seeMore}>
-          <Link color="primary" href="javascript:;">
-            Увидеть больше...
+        <div className={this.props.classes.seeMore} onClick={()=>this.setState({clickedPerCentersArr: false})}>
+          <Link color="primary" href="javascript:;" >
+            Сбросить фильтр
           </Link>
         </div>
       </React.Fragment>

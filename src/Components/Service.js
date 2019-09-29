@@ -15,7 +15,11 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import DvrIcon from '@material-ui/icons/Dvr';
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
+import InsertInvitationIcon from '@material-ui/icons/InsertInvitation';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -55,6 +59,7 @@ const useStyles = makeStyles(theme => ({
   },
   toolbarIcon: {
     display: 'flex',
+    flexWrap:'wrap',
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
@@ -83,6 +88,8 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+    flexBasis: '100%',
+    flexWrap: 'wrap'
   },
   drawerPaper: {
     position: 'relative',
@@ -142,7 +149,12 @@ class Menu extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-        listItemFirst: ['Dashboard', 'Orders', 'Customers', 'Reports', 'Integrations'  ],
+        listItemFirst: [
+            {name: 'Статистика', icon: <EqualizerIcon/>}, 
+            {name: 'Центры', icon: <AccountBalanceIcon/>}, 
+            {name: 'Новости', icon: <DvrIcon/>}, 
+            {name: 'События', icon: <InsertInvitationIcon/>}, 
+            {name: 'Рекомендации', icon: <LocalHospitalIcon/>}  ],
         open:  true,
         }
     }
@@ -159,9 +171,13 @@ class Menu extends React.Component {
             <>
             <AppBar position="absolute" className={clsx(this.props.classes.appBar, this.state.open && this.props.classes.appBarShift)}>
                 <Toolbar className={this.props.classes.toolbar}>
-                <Typography component="h1" variant="h6" color="inherit" noWrap className={this.props.classes.title}>
-                    Dashboard
+                <Typography component="h1" variant="h6" color="inherit"  className={this.props.classes.title} style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+                    Счетная палата РФ
+                    <Typography  variant="overline" display="inline" color="inherit"  className={this.props.classes.subTitle} style={{display: 'flex', flexBasis:'100%', justifyContent: 'center'}}>
+                        Перинатальные центры
+                    </Typography>
                 </Typography>
+                
                 <IconButton color="inherit">
                     <Badge badgeContent={4} color="secondary">
                     <NotificationsIcon />
@@ -188,9 +204,9 @@ class Menu extends React.Component {
                             this.state.listItemFirst.map((item, index) => (
                             <ListItem button onClick={()=>{this.indexChange(index)}}>
                             <ListItemIcon>
-                                <DashboardIcon />
+                                {item.icon}
                             </ListItemIcon>
-                            <ListItemText primary={item} />
+                            <ListItemText primary={item.name} />
                             </ListItem>
                         ))
                         }
